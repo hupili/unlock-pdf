@@ -14,7 +14,7 @@ Install dependency:
 Put all the PDFs you want to decrypt in a folder called `{input-dir}`
 
 ```
-./decrypt-pdf.sh {input-dir}
+./unlock-pdf.sh {input-dir}
 ```
 
 ## How?

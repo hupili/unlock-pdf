@@ -7,10 +7,10 @@ else
 	exit 255
 fi
 
-output_dir="${input_dir}.decrypted"
+output_dir="${input_dir}.unlocked"
 mkdir -p $output_dir
 
-function decrypt_one(){
+function unlock_one(){
 	fn=$1
 	input_dir=$2
 	output_dir=$3
@@ -18,6 +18,6 @@ function decrypt_one(){
 	qpdf --decrypt "${input_dir}/$fn" "${output_dir}/$fn"
 }
 
-export -f decrypt_one
-ls -1 $input_dir | xargs -IFN bash -c "decrypt_one 'FN' '$input_dir' '$output_dir'"
+export -f unlock_one
+ls -1 $input_dir | xargs -IFN bash -c "unlock_one 'FN' '$input_dir' '$output_dir'"
 
