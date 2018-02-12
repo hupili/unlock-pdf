@@ -10,8 +10,14 @@ fi
 output_dir="${input_dir}.decrypted"
 mkdir -p $output_dir
 
-for fn in `ls -1 $input_dir`
-do
-	qpdf --decrypt ${input_dir}/$fn ${output_dir}/$fn
-done
+function decrypt_one(){
+	fn=$1
+	input_dir=$2
+	output_dir=$3
+	echo "Unlocking '$fn'"
+	qpdf --decrypt "${input_dir}/$fn" "${output_dir}/$fn"
+}
+
+export -f decrypt_one
+ls -1 $input_dir | xargs -IFN bash -c "decrypt_one 'FN' '$input_dir' '$output_dir'"
 
